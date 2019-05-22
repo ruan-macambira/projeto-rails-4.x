@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
   before_action :set_options_for_select, only: [:new, :create, :edit, :update,]
+  http_basic_authenticate_with name: "wololo", password: "1234", only: :destroy
 
   # GET /contacts
   # GET /contacts.json
@@ -13,7 +14,7 @@ class ContactsController < ApplicationController
   def show
   end
 
-  # GET /contacts/new
+  # GET /contacts/ne
   def new
     @contact = Contact.new
     @contact.build_address
@@ -56,9 +57,9 @@ class ContactsController < ApplicationController
   # DELETE /contacts/1
   # DELETE /contacts/1.json
   def destroy
-    address = @contact.address.clone
+    @contact.address.destroy
+    @contact.phones.each {|phone| phone.destroy}
     @contact.destroy
-    address.destroy
     respond_to do |format|
       format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }
       format.json { head :no_content }
@@ -78,7 +79,7 @@ class ContactsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
       params.require(:contact).permit(:name, :email, :kind_id, :rmk,
-        address_attributes: [:id, :street, :city, :state, :_destroy],
+        address_attributes: [:id, :street, :city, :state],
         phones_attributes: [:id, :phone, :_destroy]
       )
     end
