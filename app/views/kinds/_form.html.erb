@@ -1,3 +1,4 @@
+<div class="basic-grey">
 <%= form_with(model: kind, local: true) do |form| %>
   <% if kind.errors.any? %>
     <div id="error_explanation">
@@ -17,6 +18,8 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit t('buttons.create'), class: "btn btn-primary"%>
+    <%= link_to "Back", kinds_path, class:"btn btn-success"%>
   </div>
 <% end %>
+</div>

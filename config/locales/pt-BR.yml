@@ -8,7 +8,11 @@
     destroy: "Excluir"
     new: "Novo"
     back: "Voltar"
+    confirm: "Confirmar"
   
   message:
     confirm: "Você tem certeza?"
     listing: "Listando"
+    created: "Item criado com sucesso!"
+    updated: "Item atualizado com sucesso!"
+    destroyed: "Item destruído com sucesso!"

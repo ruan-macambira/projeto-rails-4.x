@@ -4,7 +4,6 @@ class KindsController < ApplicationController
   # GET /kinds
   # GET /kinds.json
   def index
-    @flag = 'this is a flag, kinda...'
     @kinds = Kind.all
   end
 
@@ -29,7 +28,7 @@ class KindsController < ApplicationController
 
     respond_to do |format|
       if @kind.save
-        format.html { redirect_to @kind, notice: 'Kind was successfully created.' }
+        format.html { redirect_to kinds_path, notice: I18n.translate(:'message.created') }
         format.json { render :show, status: :created, location: @kind }
       else
         format.html { render :new }
@@ -43,7 +42,7 @@ class KindsController < ApplicationController
   def update
     respond_to do |format|
       if @kind.update(kind_params)
-        format.html { redirect_to @kind, notice: 'Kind was successfully updated.' }
+        format.html { redirect_to kinds_path, notice: I18n.translate(:'message.updated') }
         format.json { render :show, status: :ok, location: @kind }
       else
         format.html { render :edit }
@@ -57,7 +56,7 @@ class KindsController < ApplicationController
   def destroy
     @kind.destroy
     respond_to do |format|
-      format.html { redirect_to kinds_url, notice: 'Kind was successfully destroyed.' }
+      format.html { redirect_to kinds_path, notice: I18n.translate(:'message.destroyed') }
       format.json { head :no_content }
     end
   end
