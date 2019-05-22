@@ -1,0 +1,63 @@
+<%= form_with(model: contact, local: true, class: 'basic-grey') do |form| %>
+  <h1><%= form_title %></h1>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :kind_id %>
+    <%= form.collection_select :kind_id, @kind_options_for_select, :id, :description%>
+  </div>
+
+  <%= form.fields_for :address do |address_fields| %>
+    <div class="field">
+      <%= address_fields.label :street %>
+      <%= address_fields.text_field :street %>
+    </div>
+    <div class="field">
+      <%= address_fields.label :city %>
+      <%= address_fields.text_field :city %>
+     </div>
+    <div class="field">
+      <%= address_fields.label :state %>
+      <%= address_fields.select :state, options_for_states(contact.address.state)%>
+    </div>
+  <% end %>
+  </div>
+
+  <div id="phones">
+    <%= form.fields_for :phones do |phone_f| %>
+      <%= render 'phone_fields', f: phone_f %>
+    <% end %>
+    <%= link_to_add_association '[Adicionar Telefone]', form, :phones %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rmk %>
+    <%= form.text_area :rmk %>
+  </div>
+
+  <div class="actions" >
+    <%= form.submit "Enviar", class:"button" %>
+    <%= link_to "Back", back, class:"button"%>
+  </div>
+
+  <% if contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contact.errors.count, "erro") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+      <% contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

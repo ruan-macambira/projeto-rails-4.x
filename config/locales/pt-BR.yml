@@ -1,0 +1,14 @@
+"pt-BR":
+  new: "Novo"
+  back: "Voltar"
+  
+  buttons:
+    show: "Mostrar"
+    edit: "Editar"
+    destroy: "Excluir"
+    new: "Novo"
+    back: "Voltar"
+  
+  message:
+    confirm: "Você tem certeza?"
+    listing: "Listando"

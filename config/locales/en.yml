@@ -1,0 +1,11 @@
+en:
+  new: "new"
+  back: "Go Back"
+
+buttons:
+  show: "Show"
+  edit: "Edit"
+  destroy: "Delete"
+
+message:
+  confirm: "Are You Sure?"
