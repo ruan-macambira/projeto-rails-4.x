@@ -6,7 +6,7 @@ class PhonesController < ApplicationController
   def index
     respond_to do |format|
       format.html { @phones = Phone.all}
-      format.js {alert 'a'}
+      format.js {}
     end
   end
 
